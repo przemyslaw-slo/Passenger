@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace Passenger.Core.Models
+namespace Passenger.Core.Domain
 {
     public class Driver
     {

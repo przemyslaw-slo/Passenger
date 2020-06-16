@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Passenger.Core.Models;
+using Passenger.Core.Domain;
 using Passenger.Core.Repositories;
 
 namespace Passenger.Infrastructure.Repositories

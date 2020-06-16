@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Passenger.Core.Models
+namespace Passenger.Core.Domain
 {
     public class User
     {

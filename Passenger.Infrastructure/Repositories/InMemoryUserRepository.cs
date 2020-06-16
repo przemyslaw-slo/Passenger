@@ -1,5 +1,5 @@
 ﻿using Passenger.Core.Repositories;
-using Passenger.Core.Models;
+using Passenger.Core.Domain;
 using System;
 using System.Collections.Generic;
 using System.Text;

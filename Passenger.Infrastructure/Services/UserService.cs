@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using Passenger.Core.Models;
 using Passenger.Core.Repositories;
 using Passenger.Infrastructure.DTO;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Passenger.Core.Domain;
 
 namespace Passenger.Infrastructure.Services
 {
@@ -25,14 +25,6 @@ namespace Passenger.Infrastructure.Services
             var user = await _userRepository.GetAsync(email);
 
             return _mapper.Map<User, UserDto>(user);
-
-            //return new UserDto()
-            //{
-            //    Id = user.Id,
-            //    Email = user.Email,
-            //    Username = user.Username,
-            //    Fullname = user.Fullname
-            //};
         }
 
         public async Task RegisterAsync(string email, string username, string password)

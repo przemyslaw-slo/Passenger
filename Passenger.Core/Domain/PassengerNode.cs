@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Passenger.Core.Models
+﻿namespace Passenger.Core.Domain
 {
     public class PassengerNode
     {

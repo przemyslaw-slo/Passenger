@@ -1,4 +1,4 @@
-﻿using Passenger.Core.Models;
+﻿using Passenger.Core.Domain;
 using System;
 using System.Collections.Generic;
 

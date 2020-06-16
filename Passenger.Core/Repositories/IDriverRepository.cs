@@ -1,6 +1,6 @@
-﻿using Passenger.Core.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Passenger.Core.Domain;
 
 namespace Passenger.Core.Repositories
 {

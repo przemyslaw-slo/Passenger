@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Passenger.Core.Models;
+using Passenger.Core.Domain;
 using Passenger.Infrastructure.DTO;
 using System;
 using System.Collections.Generic;

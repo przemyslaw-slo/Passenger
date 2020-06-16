@@ -1,8 +1,8 @@
-﻿using Passenger.Core.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Passenger.Core.Domain;
 
 namespace Passenger.Core.Repositories
 {
