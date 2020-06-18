@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +13,7 @@ using Passenger.Infrastructure.DTO;
 
 namespace Passenger.Tests.EndToEnd.Controllers
 {
-    class UsersControllerTests
+    public class UsersControllerTests
     {
         private readonly TestServer _server;
         private readonly HttpClient _client;

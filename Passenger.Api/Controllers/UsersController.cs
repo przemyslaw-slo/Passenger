@@ -1,8 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Passenger.Infrastructure.Commands.Users;
-using Passenger.Infrastructure.DTO;
 using Passenger.Infrastructure.Services;
 
 namespace Passenger.Api.Controllers

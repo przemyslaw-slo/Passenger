@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
 using Passenger.Core.Domain;
 using Passenger.Infrastructure.DTO;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Passenger.Infrastructure.Mappers
 {
