@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using FluentAssertions;
-using FluentAssertions.Events;
 using Moq;
 using NUnit.Framework;
 using Passenger.Core.Domain;
