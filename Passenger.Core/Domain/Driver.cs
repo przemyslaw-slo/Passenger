@@ -14,9 +14,10 @@ namespace Passenger.Core.Domain
         {
         }
 
-        public Driver(Guid userid)
+        public Driver(Guid userid, Vehicle vehicle)
         {
             UserId = userid;
+            Vehicle = vehicle;
         }
     }
 }

@@ -55,7 +55,7 @@ namespace Passenger.Core.Domain
 
             if (seats > 9)
             {
-                throw new Exception("You can not provide more than 9 seats");
+                throw new Exception("You can not provide more than 9 seats.");
             }
 
             if (Seats == seats)
@@ -66,9 +66,7 @@ namespace Passenger.Core.Domain
         }
 
         public static Vehicle Create(string brand, string name, int seats)
-        {
-            return new Vehicle(brand, name, seats);
-        }
+            => new Vehicle(brand, name, seats);
     }
 }
 

@@ -12,10 +12,13 @@ namespace Passenger.Infrastructure.IoC.Modules
                 .GetTypeInfo()
                 .Assembly;
 
+            // Search for types inside the assembly
+            // to match generic type ICommandHandler<>
+            // per request HTTP
             builder.RegisterAssemblyTypes(assembly)
                 .AsClosedTypesOf(typeof(ICommandHandler<>))
                 .InstancePerLifetimeScope();
-            
+
             builder.RegisterType<CommandDispatcher>()
                 .As<ICommandDispatcher>()
                 .InstancePerLifetimeScope();

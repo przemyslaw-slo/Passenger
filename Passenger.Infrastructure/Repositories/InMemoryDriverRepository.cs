@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Passenger.Core.Domain;
 using Passenger.Core.Repositories;
 
@@ -8,25 +9,26 @@ namespace Passenger.Infrastructure.Repositories
 {
     public class InMemoryDriverRepository : IDriverRepository
     {
-        private static ISet<Driver> _drivers = new HashSet<Driver>();
+        private static readonly ISet<Driver> Drivers = new HashSet<Driver>();
 
-        public void Add(Driver driver)
+        public async Task AddAsync(Driver driver)
         {
-            _drivers.Add(driver);
+            Drivers.Add(driver);
+            await Task.CompletedTask;
         }
 
-        public Driver Get(Guid userId)
+        public async Task<Driver> GetAsync(Guid userId)
         {
-            return _drivers.Single(x => x.UserId == userId);
+            return await Task.FromResult(Drivers.SingleOrDefault(x => x.UserId == userId));
         }
 
-        public IEnumerable<Driver> GetAll()
+        public async Task<IEnumerable<Driver>> GetAllAsync()
         {
-            return _drivers;
+            return await Task.FromResult(Drivers);
         }
-
-        public void Update(Driver driver)
+        public Task UpdateAsync(Driver driver)
         {
+            return Task.CompletedTask;
         }
     }
 }

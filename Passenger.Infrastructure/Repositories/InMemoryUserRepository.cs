@@ -9,7 +9,7 @@ namespace Passenger.Infrastructure.Repositories
 {
     public class InMemoryUserRepository : IUserRepository
     {
-        private static ISet<User> _users = new HashSet<User>
+        private static readonly ISet<User> Users = new HashSet<User>
         {
             new User("user1@gmail.com", "user1", "secret", "salt"),
             new User("user2@gmail.com", "user2", "secret", "salt"),
@@ -18,29 +18,29 @@ namespace Passenger.Infrastructure.Repositories
 
         public async Task AddAsync(User user)
         {
-            _users.Add(user);
+            Users.Add(user);
             await Task.CompletedTask;
         }
 
         public async Task<User> GetAsync(Guid id)
         {
-            return await Task.FromResult(_users.SingleOrDefault(x => x.Id == id));
+            return await Task.FromResult(Users.SingleOrDefault(x => x.Id == id));
         }
 
         public async Task<User> GetAsync(string email)
         {
-            return await Task.FromResult(_users.SingleOrDefault(x => x.Email == email.ToLowerInvariant()));
+            return await Task.FromResult(Users.SingleOrDefault(x => x.Email == email.ToLowerInvariant()));
         }
 
         public async Task<IEnumerable<User>> GetAllAsync()
         {
-            return await Task.FromResult(_users);
+            return await Task.FromResult(Users);
         }
 
         public async Task RemoveAsync(Guid id)
         {
             var user = await GetAsync(id);
-            _users.Remove(user);
+            Users.Remove(user);
         }
 
         public async Task UpdateAsync(User user)

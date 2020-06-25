@@ -1,11 +1,13 @@
 ﻿using Passenger.Infrastructure.DTO;
 using System;
+using System.Threading.Tasks;
+using Passenger.Infrastructure.Commands.Drivers;
 
 namespace Passenger.Infrastructure.Services
 {
-    public interface IDriverService
+    public interface IDriverService : IService
     {
-        DriverDto Get(Guid userId);
-
+        Task<DriverDto> GetAsync(Guid userId);
+        Task CreateAsync(Guid userId, CreateDriver.DriverVehicle vehicle);
     }
 }
