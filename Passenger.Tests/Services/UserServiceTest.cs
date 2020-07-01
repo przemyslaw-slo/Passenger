@@ -19,8 +19,9 @@ namespace Passenger.Tests.Services
         {
             // Arrange
             var userRepositoryMock = new Mock<IUserRepository>();
+            var encrypterMock = new Mock<IEncrypter>();
             var mapperMock = new Mock<IMapper>();
-            var sut = new UserService(userRepositoryMock.Object, mapperMock.Object);
+            var sut = new UserService(userRepositoryMock.Object, encrypterMock.Object, mapperMock.Object);
 
             var user = new User("user@gmail.com", "user", "secret", "salt");
             userRepositoryMock.Setup(x => x.GetAsync(user.Email))
@@ -51,8 +52,9 @@ namespace Passenger.Tests.Services
         {
             // Arrange
             var userRepositoryMock = new Mock<IUserRepository>();
+            var encrypterMock = new Mock<IEncrypter>();
             var mapperMock = new Mock<IMapper>();
-            var sut = new UserService(userRepositoryMock.Object, mapperMock.Object);
+            var sut = new UserService(userRepositoryMock.Object, encrypterMock.Object, mapperMock.Object);
             userRepositoryMock.Setup(x => x.GetAsync("invalid@user.com"))
                 .ReturnsAsync(() => null);
 
@@ -68,8 +70,9 @@ namespace Passenger.Tests.Services
         {
             // Arrange
             var userRepositoryMock = new Mock<IUserRepository>();
+            var encrypterMock = new Mock<IEncrypter>();
             var mapperMock = new Mock<IMapper>();
-            var sut = new UserService(userRepositoryMock.Object, mapperMock.Object);
+            var sut = new UserService(userRepositoryMock.Object, encrypterMock.Object, mapperMock.Object);
 
             // Act
             await sut.GetAsync("email@email.com");
@@ -83,8 +86,9 @@ namespace Passenger.Tests.Services
         {
             // Arrange
             var userRepositoryMock = new Mock<IUserRepository>();
+            var encrypterMock = new Mock<IEncrypter>();
             var mapperMock = new Mock<IMapper>();
-            var sut = new UserService(userRepositoryMock.Object, mapperMock.Object);
+            var sut = new UserService(userRepositoryMock.Object, encrypterMock.Object, mapperMock.Object);
 
             // Act
             await sut.RegisterAsync("email@email.com", "user", "secret");
@@ -98,8 +102,9 @@ namespace Passenger.Tests.Services
         {
             // Arrange
             var userRepositoryMock = new Mock<IUserRepository>();
+            var encrypterMock = new Mock<IEncrypter>();
             var mapperMock = new Mock<IMapper>();
-            var sut = new UserService(userRepositoryMock.Object, mapperMock.Object);
+            var sut = new UserService(userRepositoryMock.Object, encrypterMock.Object, mapperMock.Object);
             var user = new User("email@email.com", "user", "secret", "salt");
             userRepositoryMock.Setup(x => x.GetAsync(user.Email))
                 .ReturnsAsync(user);
@@ -114,8 +119,9 @@ namespace Passenger.Tests.Services
         {
             // Arrange
             var userRepositoryMock = new Mock<IUserRepository>();
+            var encrypterMock = new Mock<IEncrypter>();
             var mapperMock = new Mock<IMapper>();
-            var sut = new UserService(userRepositoryMock.Object, mapperMock.Object);
+            var sut = new UserService(userRepositoryMock.Object, encrypterMock.Object, mapperMock.Object);
 
             // Act
             await sut.RegisterAsync("email@email.com", "user", "secret");
