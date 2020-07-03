@@ -9,13 +9,13 @@ using Passenger.Infrastructure.DTO;
 
 namespace Passenger.Tests.EndToEnd.Controllers
 {
-    class DriversControllerTests : ControllerTestsBase
+    public class DriversControllerTests : ControllerTestsBase
     {
         [Test]
         public async Task GivenValidUserId_DriverShouldBeCreated()
         {
             // Arrange
-            const string email = "user1@gmail.com";
+            const string email = "admin1@email.com";
             var user = await GetUserAsync(email);
             var commandVehicle = new CreateDriver.DriverVehicle()
             {
@@ -38,9 +38,6 @@ namespace Passenger.Tests.EndToEnd.Controllers
             response.StatusCode.Should().BeEquivalentTo(HttpStatusCode.Created);
             response.Headers.Location.ToString().Should().BeEquivalentTo($"drivers/{command.UserId}");
             driver.UserId.Should().Be(command.UserId);
-            driver.Vehicle.Brand.Should().BeEquivalentTo(command.Vehicle.Brand);
-            driver.Vehicle.Name.Should().BeEquivalentTo(command.Vehicle.Name);
-            driver.Vehicle.Seats.Should().Be(command.Vehicle.Seats);
         }
 
         private async Task<UserDto> GetUserAsync(string email)

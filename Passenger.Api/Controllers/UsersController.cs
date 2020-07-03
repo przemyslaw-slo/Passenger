@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Passenger.Infrastructure.Commands;
 using Passenger.Infrastructure.Commands.Users;
@@ -16,7 +15,6 @@ namespace Passenger.Api.Controllers
             _userService = userService;
         }
 
-        [Authorize]
         [HttpGet("{email}")]
         public async Task<IActionResult> Get(string email)
         {
@@ -27,6 +25,14 @@ namespace Passenger.Api.Controllers
             }
 
             return Json(user);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var users = await _userService.GetAllAsync();
+
+            return Json(users);
         }
 
         [HttpPost]

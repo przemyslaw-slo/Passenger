@@ -10,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Passenger.Infrastructure.Extensions;
 using Passenger.Infrastructure.IoC;
+using Passenger.Infrastructure.Services;
 using Passenger.Infrastructure.Settings;
 
 namespace Passenger.Api
@@ -27,6 +28,7 @@ namespace Passenger.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddMemoryCache();
 
             var jwtSettings = Configuration.GetSettings<JwtSettings>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -59,6 +61,14 @@ namespace Passenger.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            var generalSettings = Configuration.GetSettings<GeneralSettings>();
+            if (generalSettings.SeedData)
+            {
+                var dataInitializer = app.ApplicationServices.GetService<IDataInitializer>();
+                dataInitializer.SeedAsync();
+            }
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

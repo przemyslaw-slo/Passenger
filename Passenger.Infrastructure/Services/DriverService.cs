@@ -1,10 +1,10 @@
 ﻿using Passenger.Core.Repositories;
 using Passenger.Infrastructure.DTO;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Passenger.Core.Domain;
-using Passenger.Infrastructure.Commands.Drivers;
 
 namespace Passenger.Infrastructure.Services
 {
@@ -25,11 +25,17 @@ namespace Passenger.Infrastructure.Services
         {
             var driver = await _driverRepository.GetAsync(userId);
 
-            var mapper = _mapper.Map<Driver, DriverDto>(driver);
-            return mapper;
+            return _mapper.Map<Driver, DriverDto>(driver);
         }
 
-        public async Task CreateAsync(Guid userId, CreateDriver.DriverVehicle driverVehicle)
+        public async Task<IEnumerable<DriverDto>> GetAllAsync()
+        {
+            var drivers = await _driverRepository.GetAllAsync();
+
+            return _mapper.Map<IEnumerable<Driver>, IEnumerable<DriverDto>>(drivers);
+        }
+
+        public async Task CreateAsync(Guid userId)
         {
             var user = await _userRepository.GetAsync(userId);
             if (user == null)
@@ -43,10 +49,20 @@ namespace Passenger.Infrastructure.Services
                 throw new Exception($"User {userId} already is a driver.");
             }
 
-            var vehicle = Vehicle.Create(driverVehicle.Brand, driverVehicle.Name, driverVehicle.Seats);
-            driver = new Driver(userId, vehicle);
-
+            driver = new Driver(user);
             await _driverRepository.AddAsync(driver);
+        }
+
+        public async Task SetVehicleAsync(Guid userId, string brand, string name, int seats)
+        {
+            var driver = await _driverRepository.GetAsync(userId);
+            if (driver == null)
+            {
+                throw new Exception($"Driver with {userId} not exists.");
+            }
+
+            driver.SetVehicle(brand, name, seats);
+            await _driverRepository.UpdateAsync(driver);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Text;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Passenger.Api;
@@ -19,12 +20,17 @@ namespace Passenger.Tests.EndToEnd.Controllers
             // .NET Core 2.x
             //var webHostBuilder = new WebHostBuilder()
             //    .UseStartup<Startup>();
-
             //_server = new TestServer(webHostBuilder);
             //_client = _server.CreateClient();
 
             // .Net Core 3.x
             var hostBuilder = new HostBuilder()
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    config.AddJsonFile("appsettings.json",
+                        true,
+                        true);
+                })
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .ConfigureWebHost(webBuilder =>
                 {

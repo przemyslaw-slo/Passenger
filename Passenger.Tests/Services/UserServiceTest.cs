@@ -23,7 +23,7 @@ namespace Passenger.Tests.Services
             var mapperMock = new Mock<IMapper>();
             var sut = new UserService(userRepositoryMock.Object, encrypterMock.Object, mapperMock.Object);
 
-            var user = new User("user@gmail.com", "user", "secret", "salt");
+            var user = new User(Guid.NewGuid(),"user@gmail.com", "user", "secret", "user", "salt");
             userRepositoryMock.Setup(x => x.GetAsync(user.Email))
                 .ReturnsAsync(user);
 
@@ -91,7 +91,7 @@ namespace Passenger.Tests.Services
             var sut = new UserService(userRepositoryMock.Object, encrypterMock.Object, mapperMock.Object);
 
             // Act
-            await sut.RegisterAsync("email@email.com", "user", "secret");
+            await sut.RegisterAsync(Guid.NewGuid(),"email@email.com", "user", "secret", "user");
 
             // Assert
             userRepositoryMock.Verify(x => x.GetAsync(It.IsAny<string>()), Times.Once);
@@ -105,12 +105,12 @@ namespace Passenger.Tests.Services
             var encrypterMock = new Mock<IEncrypter>();
             var mapperMock = new Mock<IMapper>();
             var sut = new UserService(userRepositoryMock.Object, encrypterMock.Object, mapperMock.Object);
-            var user = new User("email@email.com", "user", "secret", "salt");
+            var user = new User(Guid.NewGuid(),"email@email.com", "user", "secret", "user", "salt");
             userRepositoryMock.Setup(x => x.GetAsync(user.Email))
                 .ReturnsAsync(user);
 
             // Act & Assert
-            sut.Invoking(x => x.RegisterAsync(user.Email, user.Username, user.Password)).Should()
+            sut.Invoking(x => x.RegisterAsync(Guid.NewGuid(),user.Email, user.Username, user.Password, "user")).Should()
                 .Throw<Exception>().WithMessage($"User with email '{user.Email}' already exist.");
         }
 
@@ -124,7 +124,7 @@ namespace Passenger.Tests.Services
             var sut = new UserService(userRepositoryMock.Object, encrypterMock.Object, mapperMock.Object);
 
             // Act
-            await sut.RegisterAsync("email@email.com", "user", "secret");
+            await sut.RegisterAsync(Guid.NewGuid(),"email@email.com", "user", "secret", "user");
 
             // Assert
             userRepositoryMock.Verify(x => x.AddAsync(It.IsAny<User>()), Times.Once);

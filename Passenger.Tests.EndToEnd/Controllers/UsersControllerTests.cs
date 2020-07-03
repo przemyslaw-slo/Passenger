@@ -14,7 +14,7 @@ namespace Passenger.Tests.EndToEnd.Controllers
         public async Task GivenValidEmail_UserShouldExists()
         {
             // Arrange
-            const string email = "user1@gmail.com";
+            const string email = "user1@email.com";
 
             // Act
             var user = await GetUserAsync(email);
@@ -42,7 +42,7 @@ namespace Passenger.Tests.EndToEnd.Controllers
             // Arrange
             var command = new CreateUser()
             {
-                Email = "user0@gmail.com",
+                Email = "user0@email.com",
                 Password = "secret",
                 Username = "user0"
             };

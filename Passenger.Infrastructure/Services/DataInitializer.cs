@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+
+namespace Passenger.Infrastructure.Services
+{
+    public class DataInitializer : IDataInitializer
+    {
+        private readonly IUserService _userService;
+        private readonly IDriverService _driverService;
+        private readonly ILogger<DataInitializer> _logger;
+
+        public DataInitializer(IUserService userService, IDriverService driverService, ILogger<DataInitializer> logger)
+        {
+            _userService = userService;
+            _driverService = driverService;
+            _logger = logger;
+        }
+        public async Task SeedAsync()
+        {
+            _logger.LogTrace("Initializing data...");
+
+            var tasks = new List<Task>();
+            for (var i = 1; i <= 10; i++)
+            {
+                var userId = Guid.NewGuid();
+                var username = $"user{i}";
+                tasks.Add(_userService.RegisterAsync(userId, $"{username}@email.com", username, "secret", "user"));
+                _logger.LogTrace($"Adding user: '{username}'.");
+                tasks.Add(_driverService.CreateAsync(userId));
+                _logger.LogTrace($"Adding driver for '{username}'.");
+                tasks.Add(_driverService.SetVehicleAsync(userId, "AUDI", "RS7", 5));
+                _logger.LogTrace($"Setting vehicle for '{username}'.");
+            }
+            await Task.WhenAll(tasks);
+
+            for (var i = 1; i <= 3; i++)
+            {
+                var userId = Guid.NewGuid();
+                var username = $"admin{i}";
+                tasks.Add(_userService.RegisterAsync(userId, $"{username}@email.com", username, "secret", "admin"));
+                _logger.LogTrace($"Adding admin: '{username}'.");
+            }
+            await Task.WhenAll(tasks);
+
+            _logger.LogTrace("Data was initialized.");
+
+        }
+    }
+}
