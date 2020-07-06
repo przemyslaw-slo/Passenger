@@ -20,8 +20,7 @@ namespace Passenger.Tests.EndToEnd.Controllers
             var commandVehicle = new CreateDriver.DriverVehicle()
             {
                 Brand = "Audi",
-                Name = "RS3",
-                Seats = 3
+                Name = "RS7"
             };
             var command = new CreateDriver()
             {

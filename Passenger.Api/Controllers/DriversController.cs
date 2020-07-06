@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Passenger.Infrastructure.Commands;
 using Passenger.Infrastructure.Commands.Drivers;
@@ -24,6 +25,7 @@ namespace Passenger.Api.Controllers
             return Json(drivers);
         }
 
+        [Authorize]
         [HttpGet("{userId}")]
         public async Task<IActionResult> Get(Guid userId)
         {
@@ -39,9 +41,9 @@ namespace Passenger.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(CreateDriver command)
         {
-            await CommandDispatcher.DispatchAsync(command);
+            await DispatchAsync(command);
 
-            return Created($"drivers/{command.UserId}", new { userId = command.UserId });
+            return Created($"drivers/{command.UserId}", null);
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Passenger.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.WriteIndented = true);
             services.AddMemoryCache();
 
             var jwtSettings = Configuration.GetSettings<JwtSettings>();
@@ -42,9 +42,12 @@ namespace Passenger.Api
                     };
                 });
 
-            services.AddSwaggerGen(c =>
+            services.AddAuthorization(options =>
+                options.AddPolicy("admin", p => p.RequireRole("admin")));
+
+            services.AddSwaggerGen(options =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
         }
 
@@ -70,9 +73,9 @@ namespace Passenger.Api
             }
 
             app.UseSwagger();
-            app.UseSwaggerUI(c =>
+            app.UseSwaggerUI(options =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
             app.UseRouting();
