@@ -30,5 +30,11 @@ namespace Passenger.Infrastructure.Repositories
         {
             return Task.CompletedTask;
         }
+
+        public async Task DeleteAsync(Driver driver)
+        {
+            Drivers.Remove(driver);
+            await Task.CompletedTask;
+        }
     }
 }

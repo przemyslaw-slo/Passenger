@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Passenger.Api.Framework;
 using Passenger.Infrastructure.Extensions;
 using Passenger.Infrastructure.IoC;
 using Passenger.Infrastructure.Services;
@@ -71,6 +72,8 @@ namespace Passenger.Api
                 var dataInitializer = app.ApplicationServices.GetService<IDataInitializer>();
                 dataInitializer.SeedAsync();
             }
+
+            app.UseMyExceptionHandler();
 
             app.UseSwagger();
             app.UseSwaggerUI(options =>

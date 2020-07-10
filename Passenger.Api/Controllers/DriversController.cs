@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Passenger.Infrastructure.Commands;
 using Passenger.Infrastructure.Commands.Drivers;
@@ -25,7 +24,6 @@ namespace Passenger.Api.Controllers
             return Json(drivers);
         }
 
-        [Authorize]
         [HttpGet("{userId}")]
         public async Task<IActionResult> Get(Guid userId)
         {
@@ -44,6 +42,22 @@ namespace Passenger.Api.Controllers
             await DispatchAsync(command);
 
             return Created($"drivers/{command.UserId}", null);
+        }
+
+        [HttpPut("me")]
+        public async Task<IActionResult> Put(UpdateDriver command)
+        {
+            await DispatchAsync(command);
+
+            return NoContent();
+        }
+
+        [HttpDelete("me")]
+        public async Task<IActionResult> Delete()
+        {
+            await DispatchAsync(new DeleteDriver());
+
+            return NoContent();
         }
     }
 }

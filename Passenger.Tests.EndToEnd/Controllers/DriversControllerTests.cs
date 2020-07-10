@@ -5,6 +5,7 @@ using FluentAssertions;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using Passenger.Infrastructure.Commands.Drivers;
+using Passenger.Infrastructure.Commands.Drivers.Models;
 using Passenger.Infrastructure.DTO;
 
 namespace Passenger.Tests.EndToEnd.Controllers
@@ -17,7 +18,7 @@ namespace Passenger.Tests.EndToEnd.Controllers
             // Arrange
             const string email = "admin1@email.com";
             var user = await GetUserAsync(email);
-            var commandVehicle = new CreateDriver.DriverVehicle()
+            var commandVehicle = new DriverVehicle()
             {
                 Brand = "Audi",
                 Name = "RS7"
