@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Passenger.Core.Domain;
+using Passenger.Infrastructure.Exceptions;
 using Passenger.Infrastructure.Extensions;
+using ErrorCodes = Passenger.Infrastructure.Exceptions.ErrorCodes;
 
 namespace Passenger.Infrastructure.Services
 {
@@ -44,7 +46,7 @@ namespace Passenger.Infrastructure.Services
             var driver = await _driverRepository.GetAsync(userId);
             if (driver != null)
             {
-                throw new Exception($"User {userId} already is a driver.");
+                throw new ServiceException(ErrorCodes.DriverAlreadyExist, $"User {userId} already is a driver.");
             }
 
             driver = new Driver(user);
