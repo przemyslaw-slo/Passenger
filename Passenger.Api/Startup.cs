@@ -11,6 +11,7 @@ using Microsoft.OpenApi.Models;
 using Passenger.Api.Framework;
 using Passenger.Infrastructure.Extensions;
 using Passenger.Infrastructure.IoC;
+using Passenger.Infrastructure.Mongo;
 using Passenger.Infrastructure.Services;
 using Passenger.Infrastructure.Settings;
 
@@ -72,6 +73,8 @@ namespace Passenger.Api
                 var dataInitializer = app.ApplicationServices.GetService<IDataInitializer>();
                 dataInitializer.SeedAsync();
             }
+
+            MongoConfigurator.Initialize();
 
             app.UseMyExceptionHandler();
 
