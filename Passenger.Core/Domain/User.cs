@@ -23,9 +23,9 @@ namespace Passenger.Core.Domain
         public User(Guid userId, string email, string username, string password, string role, string salt)
         {
             Id = userId;
-            Email = email;
-            Username = username;
-            Password = password;
+            SetEmail(email);
+            SetUsername(username);
+            SetPassword(password);
             Role = role;
             Salt = salt;
             CreatedAt = DateTime.UtcNow;

@@ -6,7 +6,7 @@ using Passenger.Infrastructure.Repositories;
 
 namespace Passenger.Infrastructure.IoC.Modules
 {
-    class MongoModule : Autofac.Module
+    public class MongoModule : Autofac.Module
     {
         protected override void Load(ContainerBuilder builder)
         {
@@ -26,7 +26,7 @@ namespace Passenger.Infrastructure.IoC.Modules
                 return database;
             }).As<IMongoDatabase>();
 
-            var assembly = typeof(CommandModule)
+            var assembly = typeof(RepositoryModule)
                 .GetTypeInfo()
                 .Assembly;
 

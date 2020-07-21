@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Passenger.Api.Framework;
+using Passenger.Infrastructure.EF;
 using Passenger.Infrastructure.Extensions;
 using Passenger.Infrastructure.IoC;
 using Passenger.Infrastructure.Mongo;
@@ -31,6 +32,7 @@ namespace Passenger.Api
         {
             services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.WriteIndented = true);
             services.AddMemoryCache();
+            services.AddDbContext<PassengerContext>();
 
             var jwtSettings = Configuration.GetSettings<JwtSettings>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
