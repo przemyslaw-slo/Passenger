@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Passenger.Api\Passenger.Api.csproj" />
+    <ProjectReference Include="..\..\src\Passenger.Api\Passenger.Api.csproj" />
   </ItemGroup>
 
 </Project>

@@ -3,15 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Passenger.Core", "Passenger.Core\Passenger.Core.csproj", "{7D8A90A3-1110-40C4-A803-5F9776ECD0EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Passenger.Core", "src\Passenger.Core\Passenger.Core.csproj", "{7D8A90A3-1110-40C4-A803-5F9776ECD0EF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Passenger.Infrastructure", "Passenger.Infrastructure\Passenger.Infrastructure.csproj", "{35FB11AE-36C0-4CD5-8129-5F4F0AFF04EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Passenger.Infrastructure", "src\Passenger.Infrastructure\Passenger.Infrastructure.csproj", "{35FB11AE-36C0-4CD5-8129-5F4F0AFF04EE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Passenger.Api", "Passenger.Api\Passenger.Api.csproj", "{4BD3DF3A-967C-465B-AFB6-12EDF377DB86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Passenger.Api", "src\Passenger.Api\Passenger.Api.csproj", "{4BD3DF3A-967C-465B-AFB6-12EDF377DB86}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Passenger.Tests", "Passenger.Tests\Passenger.Tests.csproj", "{387F8C6F-18B1-4ABC-B2DD-D7882A7D2F5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Passenger.Tests", "tests\Passenger.Tests\Passenger.Tests.csproj", "{387F8C6F-18B1-4ABC-B2DD-D7882A7D2F5F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Passenger.Tests.EndToEnd", "Passenger.Tests.EndToEnd\Passenger.Tests.EndToEnd.csproj", "{0773D7DE-9CBB-47CC-9D57-AF0B93AEF019}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Passenger.Tests.EndToEnd", "tests\Passenger.Tests.EndToEnd\Passenger.Tests.EndToEnd.csproj", "{0773D7DE-9CBB-47CC-9D57-AF0B93AEF019}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{445C9A2D-FE21-4FF7-B17E-B6F1F90D4845}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\database.sql = scripts\database.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
