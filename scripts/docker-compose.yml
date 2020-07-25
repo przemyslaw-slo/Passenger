@@ -2,12 +2,11 @@ version: '3.4'
 
 services:
   passenger.api:
-    image: ${DOCKER_REGISTRY-}passengerapi
-    build:
-      context: .
-      dockerfile: src/Passenger.Api/Dockerfile
     depends_on:
       - db
+    image: przemyslawslowik/passenger.api
+    ports:
+      - "5000:80"
   db:
     image: "mcr.microsoft.com/mssql/server:2019-CU5-ubuntu-18.04"
     environment:
